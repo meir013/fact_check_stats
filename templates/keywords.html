@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Fact Check Stats by AdVerif.ai">
+  <meta name="keywords" content="Artificial Intelligence,Fact Check">
+  <meta name="author" content="Or Levi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Fact Check Stats by AdVerif.ai</title>
+<link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+<div class="report">
+<center style="margin-bottom:10px;">
+
+<h1>Fact Checking - Live Stats</h1>
+<span style="color:gray">Today: {{ result['dt'] }} </span><br><br>
+
+<div class="menu">
+<a href="./">Fact Checks per Country</a> |
+<a href="{{ url_for('recent') }}">Most Recent</a> |
+<a href="{{ url_for('time') }}">Fact Checks Over Time</a> |
+<a href="{{ url_for('leaderboard') }}">Author Leaderboard</a> |
+<a href="" style="font-weight:bold">Trending Keywords</a>
+</div>
+<hr>
+
+<h2>Trending Keywords - US</h2>
+<img src="{{ url_for('static',filename=result['us_cloud']) }}"/>
+
+<br>
+<hr>
+<div class="footer">
+<a href="./">Fact Checks per Country</a> |
+<a href="{{ url_for('recent') }}">Most Recent</a> |
+<a href="{{ url_for('time') }}">Fact Checks Over Time</a> |
+<a href="{{ url_for('leaderboard') }}">Author Leaderboard</a> |
+<a href="" style="font-weight:bold">Trending Keywords</a>
+<br><br>
+Data is based on the Schema.org 'ClaimReview' markup that logs fact-checks published around the world into one database
+<br><br>
+<div>
+* <span style="color:gray">Made by</span>
+<a href='http://adverifai.com'><img alt="AdVerifai" src='https://i1.wp.com/adverifai.com/wp-content/uploads/2017/11/cropped-logo.png' width="150px" style="vertical-align:middle"></a> *
+</div>
+</div>
+</center>
+</div>
+</body>
+</html>

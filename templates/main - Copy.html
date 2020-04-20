@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Fact Check Stats by AdVerif.ai">
+  <meta name="keywords" content="Artificial Intelligence,Fact Check">
+  <meta name="author" content="Or Levi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fact Check Stats by AdVerif.ai</title>
+<link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+<script type=text/javascript src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+</head>
+<body>
+
+<center style="margin-bottom:10px;">
+<h1>Fact Check Stats</h1>
+<span style="color:gray">Today: {{ result['dt'] }} </span></br></br>
+
+<a href="">Fact Checks per Country</a> |
+<a href="">Most Recent</a> |
+<a href="">Fact Checks Over Time</a> |
+<a href="">Author Leaderboard</a> |
+<a href="">Trending Keywords</a>
+<hr>
+
+<h2>Fact Checks per Country<h2>
+<img src="{{ url_for('static',filename='images/fc_world.png') }}"/>
+
+</br>
+<hr>
+<h3>Top 10 Countries<h3>
+<table style="line-height:30px;border-collapse:collapse">
+<tr style="font-weight:bold;border-bottom: 2px solid black !important;">
+<td width="200px;">Country</td>
+<td width="100px;" style="text-align:center">Count</td>
+</tr>
+		{% for fc in result['countries'] %}
+			<tr style="font-weight:normal">
+			<td width="200px;">{{ fc['country'] }}</td>  
+			<td width="100px;" style="text-align:center">{{ fc['count'] }}</td> 
+			</tr>
+		{% endfor %}
+</table>
+
+<div style="width:30%;height:130px;text-align:center">
+<div style="width:50%;float:left">
+<div class="numberCircle">{{ result['lastweek'] }}</div> Fact Checks Last Week </br>
+</div>
+<div style='display: inline-block'>
+<div class="numberCircle">{{ result['total'] }}</div> Fact Checks Total
+</div>
+</div>
+
+<h2>Most Recent Fact Checks<h2>
+<div style="width:80%;text-align:left">
+<ul style="list-style-type:none">
+{% for fc in result['recent'] %}
+	<li style="font-weight: normal;margin-bottom: 15px;">
+	<a href="{{ fc['url'] }}" style="line-height:50px;">{{ fc['title'] }}</a></br>
+	<span style="color:gray">Published:</span> {{ fc['dateCreatedFormat'] }}</br>
+	<span style="color:gray">Source:</span> {{ fc['itemReviewed'] }}</br>
+	<span style="color:gray">Checked by:</span> {{ fc['author'] }}
+	</li>
+{% endfor %}
+</ul>
+</div>
+
+</br></br>
+<h2>Fact Check Leaderboard</h2>
+<img src="{{ url_for('static',filename=result['fc_leaderboard']) }}"/>
+
+</br></br>
+<h2>Number of Fact Checks Over Time [2019]</h2>
+<img src="{{ url_for('static',filename=result['fc_per_week']) }}"/>
+
+</br></br>
+<h2>Trending Keywords - US</h2>
+<img src="{{ url_for('static',filename=result['us_cloud']) }}"/>
+
+</br></br>
+Data is based on the Schema.org 'ClaimReview' markup that logs fact-checks published around the world into one database
+
+</center>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Fact Check Stats by AdVerif.ai">
+  <meta name="keywords" content="Artificial Intelligence,Fact Check">
+  <meta name="author" content="Or Levi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Fact Check Stats by AdVerif.ai</title>
+<link rel= "stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+<div class="report">
+<center style="margin-bottom:10px;">
+
+<h1>Fact Checking - Live Stats</h1>
+<span style="color:gray">Today: {{ result['dt'] }} </span><br><br>
+
+<div class="menu">
+<a href="" style="font-weight:bold">Fact Checks per Country</a> |
+<a href="{{ url_for('recent') }}">Most Recent</a> |
+<a href="{{ url_for('time') }}">Fact Checks Over Time</a> |
+<a href="{{ url_for('leaderboard') }}">Author Leaderboard</a> |
+<a href="{{ url_for('keywords') }}">Trending Keywords</a>
+</div>
+<hr>
+
+<h2>Fact Checks per Country<h2>
+<img src="{{ url_for('static',filename='images/fc_world.png') }}"/>
+
+<br><br>
+
+<h3>Top 10 Countries<h3>
+<table style="line-height:30px;border-collapse:collapse">
+<tr style="font-weight:bold;border-bottom: 2px solid black !important;">
+<td width="200px;">Country</td>
+<td width="100px;" style="text-align:center">Count</td>
+</tr>
+		{% for fc in result['countries'] %}
+			<tr style="font-weight:normal">
+			<td width="200px;">{{ fc['country'] }}</td>  
+			<td width="100px;" style="text-align:center">{{ fc['count'] }}</td> 
+			</tr>
+		{% endfor %}
+</table>
+
+<br>
+<hr>
+<div class="footer">
+<a href="" style="font-weight:bold">Fact Checks per Country</a> |
+<a href="{{ url_for('recent') }}">Most Recent</a> |
+<a href="{{ url_for('time') }}">Fact Checks Over Time</a> |
+<a href="{{ url_for('leaderboard') }}">Author Leaderboard</a> |
+<a href="{{ url_for('keywords') }}">Trending Keywords</a>
+<br><br>
+Data is based on the Schema.org 'ClaimReview' markup that logs fact-checks published around the world into one database
+<br><br>
+<div>
+* <span style="color:gray">Made by</span>
+<a href='http://adverifai.com'><img alt="AdVerifai" src='https://i1.wp.com/adverifai.com/wp-content/uploads/2017/11/cropped-logo.png' width="150px" style="vertical-align:middle"></a> *
+</div>
+</div>
+</center>
+</div>
+</body>
+</html>
